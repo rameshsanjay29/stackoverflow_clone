@@ -1,65 +1,82 @@
 # StackOverflowClone (Flask)
 
-Features implemented:
-- Authentication (signup/login, OTP/email verification stubs)
-- Forgot-password with 1-per-day rule and random password generator (no digits/special chars)
-- Public space (posting limits based on friends)
-- Reward system with points ledger and transfer rules
-- Multi-language switch with OTP rules (French -> email OTP; others -> phone OTP)
-- Login history recording (browser, OS, device, IP)
-Let’s set up and run your StackOverflow Clone project step by step.
+A simple StackOverflow-like app built with Flask.
 
-1. Prerequisites
-   Make sure you have installed:
-   Python 3.9+
-   pip (Python package manager)
-   virtualenv (optional but recommended)
-   SQLite (already included with Python)
+## Features
 
-2. Extract the Project
+* Authentication (signup/login, OTP/email stubs)
+* Forgot-password (1 per day, random letters-only password)
+* Public space (posting limits based on friends)
+* Reward system (points ledger + transfer rules)
+* Multi-language OTP (French → email, others → phone)
+* Login history (browser, OS, device, IP)
 
-   Unzip the file you downloaded:
+## Setup & Run
+
+1. **Prerequisites**
+
+   * Python 3.9+
+   * pip
+   * virtualenv (optional)
+   * SQLite (included)
+
+2. **Extract project**
+
+   ```bash
    unzip stackoverflow_clone.zip
    cd stackoverflow_clone
+   ```
 
-3. Create a Virtual Environment
+3. **Virtual environment**
+
+   ```bash
    python -m venv venv
-   source venv/bin/activate     # On Linux/Mac
-   venv\Scripts\activate        # On Windows
+   source venv/bin/activate   # Windows: venv\\Scripts\\activate
+   ```
 
-4. Install Dependencies
+4. **Install deps**
+
+   ```bash
    pip install -r requirements.txt
+   ```
 
-5. Configure Environment Variables
+5. **Config env**
 
-   Copy .env.sample to .env and update values:
+   ```bash
    cp .env.sample .env
-   Open .env and change:
+   ```
 
-SECRET_KEY=your_secret_key
-DATABASE_URL=sqlite:///app.db
-MAIL_SERVER=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your_email@gmail.com
-MAIL_PASSWORD=your_app_password   # Use app password, not Gmail login
+   Edit `.env`:
 
-6. Initialize Database
-Run:
- flask db init
- flask db migrate -m "Initial migration"
- flask db upgrade
- This creates the app.db SQLite database.
+   ```env
+   SECRET_KEY=your_secret_key
+   DATABASE_URL=sqlite:///app.db
+   MAIL_SERVER=smtp.gmail.com
+   MAIL_PORT=587
+   MAIL_USERNAME=your_email@gmail.com
+   MAIL_PASSWORD=your_app_password
+   ```
 
-7. Run the App
- flask run
- Or using python:
- python run.py
+6. **Init DB**
 
-8. Testing Features
+   ```bash
+   flask db init
+   flask db migrate -m "Initial migration"
+   flask db upgrade
+   ```
 
-  Signup/Login → /auth/signup & /auth/login (send JSON with email/password)
-  Forgot Password → /auth/forgot (once per day)
-  Post in Public Space → /public/post
-  Transfer Points → /points/transfer
-  Web pages → check /, /public
- 
+7. **Run app**
+
+   ```bash
+   flask run
+   # or
+   python run.py
+   ```
+
+## Test Features
+
+* Signup/Login → `/auth/signup`, `/auth/login`
+* Forgot Password → `/auth/forgot`
+* Post in Public → `/public/post`
+* Transfer Points → `/points/transfer`
+* Web pages → `/`, `/public`
